@@ -25,7 +25,7 @@ export const Home: React.FunctionComponent = () => {
                         </Link>
                     </button>
                     <button className="forecast">
-                        <Link to="/latlon"> Forecast
+                        <Link to="/forecast"> Forecast
                             <br />
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                         </Link>
