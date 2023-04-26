@@ -26,12 +26,13 @@ export const Forecast: React.FunctionComponent = () => {
 
     return (
         <main>
-            <h1>Welcome to Weather Forecast App!</h1>
+            <h2>Weather Forecast</h2>
             <form onSubmit={handleSubmit}>
                 <label className="page-header">
                     Enter your location to get the weather forecast &nbsp;
                 </label>
                 <input
+                    className="form-input"
                     type="text"
                     name="userLoc"
                     id="userLoc"
@@ -58,10 +59,12 @@ export const Forecast: React.FunctionComponent = () => {
                                     <>
                                         <div>
                                             {day.description} <br />
-                                            <img src="./icons/icons8-sunrise-48.png" />&nbsp;&nbsp;&nbsp;
-                                            <img src="./icons/icons8-sunset-48.png" /> <br />
-                                            {day.sunrise} &nbsp;&nbsp;&nbsp;
-                                            {day.sunset}
+                                            <img src="./icons/icons8-sunrise-48.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="./icons/icons8-sunset-48.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="./icons/uv-index1.png" /><br />
+                                            {day.sunrise}&nbsp;&nbsp;&nbsp;
+                                            {day.sunset}&nbsp;&nbsp;&nbsp;
+                                            {day.uvindex}
                                         </div>
                                         <table>
                                             <tbody className="hour-tbody">
