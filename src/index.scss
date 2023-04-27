@@ -1,82 +1,82 @@
-body {
-  background-color: rgb(100, 179, 218);
-  height: 100vh;
-}
+// body {
+//   background-color: rgb(100, 179, 218);
+//   height: 100vh;
+// }
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+// :root {
+//   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+//   line-height: 1.5;
+//   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+//   color-scheme: light dark;
+//   color: rgba(255, 255, 255, 0.87);
+//   background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+//   font-synthesis: none;
+//   text-rendering: optimizeLegibility;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   -webkit-text-size-adjust: 100%;
+// }
 
-a {
-  font-weight: 500;
-  color: black;
-  text-decoration: inherit;
-}
+// a {
+//   font-weight: 500;
+//   color: black;
+//   text-decoration: inherit;
+// }
 
-a:hover {
-  color: rgb(52, 163, 227);
-}
+// a:hover {
+//   color: rgb(52, 163, 227);
+// }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+// h1 {
+//   font-size: 3.2em;
+//   line-height: 1.1;
+// }
 
-button {
-  border-radius: 8px;
-  border: 1px solid rgb(52, 163, 227);
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
+// button {
+//   border-radius: 8px;
+//   border: 1px solid rgb(52, 163, 227);
+//   padding: 0.6em 1.2em;
+//   font-size: 1em;
+//   font-weight: 500;
+//   font-family: inherit;
+//   cursor: pointer;
+//   transition: border-color 0.25s;
+// }
 
-input {
-  border-radius: 4px;
-  border: 1px solid rgb(52, 163, 227);
-}
+// input {
+//   border-radius: 4px;
+//   border: 1px solid rgb(52, 163, 227);
+// }
 
-button:hover {
-  border-color: rgb(52, 163, 227);
-}
+// button:hover {
+//   border-color: rgb(52, 163, 227);
+// }
 
-button:focus,
-input:focus,
-input:focus-visible,
-button:focus-visible {
-  outline: 2px auto rgb(52, 163, 227);
-}
+// button:focus,
+// input:focus,
+// input:focus-visible,
+// button:focus-visible {
+//   outline: 2px auto rgb(52, 163, 227);
+// }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: rgb(100, 179, 218);
-  }
+// @media (prefers-color-scheme: light) {
+//   body {
+//     background-color: rgb(100, 179, 218);
+//   }
 
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+//   :root {
+//     color: #213547;
+//     background-color: #ffffff;
+//   }
 
-  a:hover {
-    color: rgb(52, 163, 227);
-  }
+//   a:hover {
+//     color: rgb(52, 163, 227);
+//   }
 
-  button {
-    margin-top: 5px;
-    background-color: #f9f9f9;
-  }
-}
+//   button {
+//     margin-top: 5px;
+//     background-color: #f9f9f9;
+//   }
+// }

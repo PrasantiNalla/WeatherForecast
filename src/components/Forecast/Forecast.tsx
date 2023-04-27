@@ -126,7 +126,7 @@ export const Forecast: React.FunctionComponent = () => {
 
                                 {selectedDate === day.datetime && (
                                     <div className='day-container'>
-                                        {day.description}
+                                        <b>{day.description}</b>
                                         <table className='day-info-table'>
                                             <thead>
                                                 <th className='day-info-table-header'>
