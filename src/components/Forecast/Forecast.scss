@@ -1,3 +1,8 @@
+.day-container {
+    width: 80%;
+}
+
+
 h2 {
     text-align: left;
     font-size: 25px;
@@ -42,6 +47,7 @@ th {
 
 .span-data {
     text-align: left;
+    //  position: absolute;
 }
 
 .temperature {
@@ -51,4 +57,63 @@ th {
 .day-info-table-header,
 .day-info-table {
     border: none;
+}
+
+.weather-cards-container {
+    display: flex;
+    // overflow-x: scroll;
+}
+
+
+.day-selector {
+    position: sticky;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+
+
+.selected-day-selector {
+
+    padding: 2px 16px;
+    box-shadow: 0 4px 8px 0 rgb(221, 221, 163);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+
+
+.day-container {
+    position: absolute;
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+
+
+.scroll-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    width: 100%;
+}
+
+.scroll-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    h2 {
+        text-align: center;
+    }
+
+    ul {
+        padding-left: 0;
+    }
 }

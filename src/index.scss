@@ -1,5 +1,6 @@
-body{
+body {
   background-color: rgb(100, 179, 218);
+  height: 100vh;
 }
 
 :root {
@@ -61,6 +62,10 @@ button:focus-visible {
 }
 
 @media (prefers-color-scheme: light) {
+  body {
+    background-color: rgb(100, 179, 218);
+  }
+
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -71,6 +76,7 @@ button:focus-visible {
   }
 
   button {
+    margin-top: 5px;
     background-color: #f9f9f9;
   }
 }

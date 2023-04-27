@@ -1,5 +1,9 @@
-import { FormEvent, ReactFragment, useState } from 'react';
+import { FormEvent, ReactFragment, useRef, useState } from 'react';
 import { getWeatherByLocation } from '../../clients/apiClient';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+
+
+
 import './Forecast.scss';
 
 interface WeatherData {
@@ -10,19 +14,33 @@ export const Forecast: React.FunctionComponent = () => {
     const [location, setLocation] = useState("");
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [selectedDate, setSelectedDate] = useState("");
+    const [isDaySelectorClicked, setIsDaySelectorClicked] = useState(false);
     const currentDate = new Date();
     const today = currentDate.getDate();
     let currentHour = currentDate.getHours();
     let numCols = 0;
+    const ref = useRef<HTMLDivElement>(null);
+
+    // const scroll = () => {
+    //     ref.scrollX += 20;
+    // };
+    // const scroll = (scrollOffset: any) => {
+    //     ref.current.scrollLeft += scrollOffset;
+    // };
+
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         getWeatherByLocation(location).then((data) => setWeatherData(data));
     }
 
-    function handleDateClick(date: string) {
+    function handleDateClick(date: string, event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
         setSelectedDate(date);
+        const selectedDaySelector = event.currentTarget.parentElement as HTMLDivElement;
+        selectedDaySelector.classList.toggle('selected-day-selector');
     }
+
 
     function getIcon(hourIcon: string) {
         let icon = "";
@@ -46,8 +64,21 @@ export const Forecast: React.FunctionComponent = () => {
             icon = "./icons/icons8-night-48.png";
         }
         return (icon);
-
     }
+
+    function handleScrollRight() {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft += 150;
+        }
+    }
+
+    function handleScrollLeft() {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft -= 150;
+        }
+    }
+
+
     return (
         <main>
             <h2>Weather Forecast</h2>
@@ -65,23 +96,36 @@ export const Forecast: React.FunctionComponent = () => {
                 />&nbsp;
                 <button type="submit">Search</button>
             </form>
+
             {weatherData && (
                 <div className="weather-cards-container">
-                    {weatherData.days.map((day: any) => (
+                    {/* <div className="scroll-buttons-container">
+                        <button className="scroll-button" onClick={handleScrollLeft}>
+                            <FiChevronLeft />
+                        </button>
+                        <button className="scroll-button" onClick={handleScrollRight}>
+                            <FiChevronRight />
+                        </button>
+                    </div> */}
+
+                    {weatherData.days.slice(0, 10).map((day: any) => (
                         <ul className="weather-day" key={day.datetime}>
                             <li>
-                                <a onClick={() => handleDateClick(day.datetime)}>
-                                    <img src={getIcon(day.icon)} />
-                                    {today === Number(day.datetime.slice(8, 10)) ? (
-                                        numCols = 24 - currentHour,
-                                        <p>Today</p>
-                                    ) : (
-                                        currentHour = 0, numCols = 24,
-                                        <p>{day.datetime} </p>
-                                    )}
-                                </a>
+                                <div className={`day-selector ${day.datetime === selectedDate ? 'selected-day-selector' : ''}`}>
+                                    <a onClick={(event) => handleDateClick(day.datetime, event)}>
+                                        <img src={getIcon(day.icon)} />
+                                        {today === Number(day.datetime.slice(8, 10)) ? (
+                                            numCols = 24 - currentHour,
+                                            <p>Today</p>
+                                        ) : (
+                                            currentHour = 0, numCols = 24,
+                                            <p>{day.datetime} </p>
+                                        )}
+                                    </a>
+                                </div>
+
                                 {selectedDate === day.datetime && (
-                                    <>
+                                    <div className='day-container'>
                                         {day.description}
                                         <table className='day-info-table'>
                                             <thead>
@@ -200,7 +244,7 @@ export const Forecast: React.FunctionComponent = () => {
 
                                             </tbody>
                                         </table>
-                                    </>
+                                    </div>
                                 )}
                             </li>
                         </ul>
@@ -208,6 +252,7 @@ export const Forecast: React.FunctionComponent = () => {
                 </div >
             )
             }
+
         </main >
     );
 }
