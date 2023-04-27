@@ -4,6 +4,7 @@ import { WeatherByLocation } from './components/Location/WeatherByLocation';
 import './App.scss';
 import { WeatherByLatLon } from './components/WeatherByLatLon/WeatherByLatLon';
 import { Forecast } from './components/Forecast/Forecast';
+import MapChart from './components/Map/UKMap';
 
 function App() {
 
@@ -14,7 +15,9 @@ function App() {
         <Route path="/location" element={<WeatherByLocation />} />
         <Route path="/latlon" element={<WeatherByLatLon />} />
         <Route path="/forecast" element={<Forecast />} />
-        <Route path="/test" element={<WeatherByLatLon />} />
+        <Route path="/map" element={<div style={{ height: "100vh" }}>
+          <MapChart />
+        </div>} />
       </Routes>
     </main>
   )

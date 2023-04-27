@@ -1,79 +1,33 @@
-import { FormEvent, useState } from 'react';
+import React from "react";
+import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 
-import './WeatherByLocation.scss';
-import { getWeatherByLocation } from '../clients/apiClient';
+const geoUrl = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-interface WeatherData {
-    days: any;
-}
+const cities = [
+    { name: "London", coordinates: [-0.118092, 51.509865] },
+    { name: "Manchester", coordinates: [-2.242631, 53.480759] },
+    { name: "Birmingham", coordinates: [-1.893592, 52.486243] },
+    { name: "Liverpool", coordinates: [-3.002465, 53.409836] }
+];
 
-export const WeatherByLocation: React.FunctionComponent = () => {
-    const [location, setLocation] = useState("");
-    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-    const [selectedDate, setSelectedDate] = useState("");
-
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        getWeatherByLocation(location).then((data) => setWeatherData(data));
-    }
-
-    function handleDateClick(date: string) {
-        setSelectedDate(date);
-    }
-
+export default function MapChart() {
     return (
-        <main>
-            <form onSubmit={handleSubmit}>
-                <label className="page-header">
-                    Enter your location to get the weather forecast
-                </label>
-                <input
-                    type="text"
-                    name="userLoc"
-                    id="userLoc"
-                    required
-                    onChange={(e) => setLocation(e.target.value)}
-                />
-                <button type="submit">Search</button>
-            </form>
-            {weatherData && (
-                <div className="weather-cards-container">
-                    {weatherData.days.map((day: any) => (
-                        <ul className="weather-day" key={day.datetime}>
-                            <li>
-                                <a onClick={() => handleDateClick(day.datetime)}>
-                                    {day.datetime}
-                                </a>
-                                {selectedDate === day.datetime && (
-                                    <>
-                                        <br />
-                                        {day.description}
-                                        <br />
-                                        Sunrise - {day.sunrise}&nbsp;&nbsp;&nbsp; Sunset -{" "}
-                                        {day.sunset}
-                                        <ul className="weather-hour">
-                                            {day.hours.map((hour: any) => (
-                                                <li key={hour.datetime}>
-                                                    <div className="weather-hour-child">
-                                                        <div className="hour-detail">  {hour.datetime.slice(0, 5)}</div>
-                                                        <p>Temp {hour.temp}&deg;- Feels Like {hour.feelslike}&deg;</p>
-                                                        <p> Humidity {hour.humidity} Dew {hour.dew}</p>
-                                                        <p> {hour.conditions}</p>
-                                                        <p> <img src={hour.icon} alt="icon" /></p>
-                                                        <p> Visibility {hour.visibility} - Cloudcover {hour.cloudcover}</p>
-                                                        <p> Windspeed {hour.windspeed} - Winddirection {hour.winddir}</p>
-                                                    </div>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </>
-                                )}
-                            </li>
-                        </ul>
-                    ))}
-                </div >
-            )
-            }
-        </main >
+        <ComposableMap projection="geoMercator" projectionConfig={{ scale: 6000 }}>
+            <Geographies geography={geoUrl}>
+                {({ geographies }) =>
+                    geographies.filter(geo => geo.properties.NAME === "United Kingdom").map(geo => (
+                        <Geography key={geo.rsmKey} geography={geo} />
+                    ))
+                }
+            </Geographies>
+            {cities.map(({ name, coordinates }) => (
+                <Marker key={name} coordinates={coordinates as [number, number]}>
+                    <circle r={4} fill="#F53" onClick={() => console.log(name)} />
+                    <text x={10} alignmentBaseline="middle" fill="#F53" style={{ fontWeight: 500, fontSize: '12px' }}>
+                        {name}
+                    </text>
+                </Marker>
+            ))}
+        </ComposableMap>
     );
 }
