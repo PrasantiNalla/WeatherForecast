@@ -1,3 +1,11 @@
+html {
+    background: url(data:image/jpeg;base64,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) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 h2 {
     text-align: left;
     font-size: 25px;
@@ -53,12 +61,13 @@ p {
 table {
     text-align: center;
     margin: 0 auto;
-    border: 2px solid black;
+    border: 2px solid rgb(76, 178, 198);
 }
 
 ul {
     list-style-type: none;
 }
+
 
 .small-font {
     font-size: 12px;
@@ -75,6 +84,7 @@ th {
 
 .span-data {
     text-align: left;
+    padding: 6px;
     //  position: absolute;
 }
 
@@ -82,10 +92,7 @@ th {
     background-color: rgb(237, 186, 93);
 }
 
-.day-info-table-header,
-.day-info-table {
-    border: none;
-}
+
 
 .weather-cards-container {
     display: flex;
@@ -93,26 +100,52 @@ th {
 }
 
 .day-selector {
-    position: sticky;
+    // position: sticky;
     align-content: center;
     align-items: center;
     border-radius: 10px;
     border: 2px solid transparent;
 }
 
+
+
+.day-info-table-header,
+.day-info-table {
+    border: none;
+
+}
+
+.day-container-none {
+    display: none;
+
+}
+
+// .weather-day li {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     height: 100%;
+//   //  padding-top: 500px;
+// }
+
+
+.day-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .selected-day-selector {
 
     padding: 2px 16px;
-    box-shadow: 0 4px 8px 0 rgb(221, 221, 163);
+    box-shadow: 0 4px 8px 0 rgb(76, 178, 198);
     transition: 0.3s;
     border-radius: 5px;
 }
 
-.day-container {
-    position: absolute;
-    width: 70%;
-    margin: 0 auto;
-}
+
 
 .scroll-buttons-container {
     display: flex;

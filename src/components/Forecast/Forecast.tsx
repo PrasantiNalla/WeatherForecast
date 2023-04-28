@@ -1,10 +1,8 @@
 import { FormEvent, ReactFragment, useRef, useState } from 'react';
 import { getWeatherByLocation } from '../../clients/apiClient';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-
-
-
 import './Forecast.scss';
+import { HourlyForecast } from './HourlyForecast';
 
 interface WeatherData {
     days: any;
@@ -14,12 +12,12 @@ export const Forecast: React.FunctionComponent = () => {
     const [location, setLocation] = useState("");
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [selectedDate, setSelectedDate] = useState("");
-    const [isDaySelectorClicked, setIsDaySelectorClicked] = useState(false);
+    //const [isDaySelectorClicked, setIsDaySelectorClicked] = useState(false);
     const currentDate = new Date();
     const today = currentDate.getDate();
     let currentHour = currentDate.getHours();
     let numCols = 0;
-    const ref = useRef<HTMLDivElement>(null);
+    // const ref = useRef<HTMLDivElement>(null);
 
     // const scroll = () => {
     //     ref.scrollX += 20;
@@ -45,23 +43,23 @@ export const Forecast: React.FunctionComponent = () => {
     function getIcon(hourIcon: string) {
         let icon = "";
         if (hourIcon === 'cloudy') {
-            icon = "./icons/icons8-clouds-48.png";
+            icon = "./icons/cloudy.svg";
         } else if (hourIcon === "partly-cloudy-day") {
-            icon = "./icons/icons8-partly-cloudy-day.gif";
+            icon = "./icons/cloudy-day-2.svg";
         } else if (hourIcon === "clear-night") {
-            icon = "./icons/icons8-moon-and-stars-48.png";
+            icon = "./icons/night.svg";
         } else if (hourIcon === "clear-day") {
-            icon = "./icons/icons8-summer.gif";
+            icon = "./icons/day.svg";
         } else if (hourIcon === "snow") {
-            icon = "./icons/icons8-snow.gif";
+            icon = "./icons/snowy-6.svg";
         } else if (hourIcon === "rain") {
-            icon = "./icons/icons8-rain.gif";
+            icon = "./icons/rainy-7.svg";
         } else if (hourIcon === "fog") {
             icon = "./icons/icons8-fog.gif";
         } else if (hourIcon === "wind") {
             icon = "./icons/icons8-windy-weather.gif";
         } else if (hourIcon === "partly-cloudy-night") {
-            icon = "./icons/icons8-night-48.png";
+            icon = "./icons/cloudy-night-2.svg";
         }
         return (icon);
     }
@@ -124,128 +122,11 @@ export const Forecast: React.FunctionComponent = () => {
                                     </a>
                                 </div>
 
-                                {selectedDate === day.datetime && (
-                                    <div className='day-container'>
-                                        <b>{day.description}</b>
-                                        <table className='day-info-table'>
-                                            <thead>
-                                                <th className='day-info-table-header'>
-                                                    <img src="./icons/icons8-sunrise-48.png" />
-                                                </th>
-                                                <th className='day-info-table-header'>
-                                                    <img src="./icons/icons8-sunset-48.png" />
-                                                </th>
-                                                <th className='day-info-table-header'>
-                                                    <img src="./icons/uv-index1.png" />
-                                                </th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        {day.sunrise.slice(0, 5)}
-                                                    </td>
-                                                    <td>
-                                                        {day.sunset.slice(0, 5)}
-                                                    </td>
-                                                    <td>
-                                                        {day.uvindex}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <table>
-                                            <tbody className="hour-tbody">
-                                                <tr className="hour-icons-container">
-                                                    {
-                                                        Array.from({ length: 24 - currentHour }).map((_, i) => {
-                                                            const hour = day.hours[currentHour + i];
-                                                            return (
-                                                                <th>
-                                                                    {hour.datetime.slice(0, 5)}
-                                                                </th>
-                                                            )
-                                                        })}
-                                                </tr>
-                                                <tr className="hour-icons-container">
-                                                    {
-                                                        Array.from({ length: 24 - currentHour }).map((_, i) => {
-                                                            const hour = day.hours[currentHour + i];
-                                                            return (
-                                                                <td key={hour.datetime} className="hour-icon">
-                                                                    <img src={getIcon(hour.icon)} />
-                                                                </td>
-                                                            );
-                                                        })
-                                                    }
-                                                </tr>
-                                                <tr className="hour-icons-container">
-                                                    {
-                                                        Array.from({ length: 24 - currentHour }).map((_, i) => {
-                                                            const hour = day.hours[currentHour + i];
-                                                            return (
-                                                                <td className='temperature'>
-                                                                    {hour.temp}&deg;
-                                                                </td>
-                                                            )
-                                                        })}
-                                                </tr>
-                                                <tr className="hour-icons-container">
-
-                                                    <td colSpan={numCols} className="span-data">
-                                                        Feels Like temperature
-                                                    </td>
-                                                </tr>
-                                                <tr className="hour-icons-container">
-                                                    {
-                                                        Array.from({ length: 24 - currentHour }).map((_, i) => {
-                                                            const hour = day.hours[currentHour + i];
-                                                            return (
-                                                                <td className="small-font">
-                                                                    {hour.feelslike}&deg;
-                                                                </td>
-                                                            )
-                                                        })}
-                                                </tr>
-                                                <tr className="hour-icons-container">
-
-                                                    <td colSpan={numCols} className="span-data">
-                                                        Humidity
-                                                    </td>
-                                                </tr>
-                                                <tr className="hour-icons-container">
-                                                    {
-                                                        Array.from({ length: 24 - currentHour }).map((_, i) => {
-                                                            const hour = day.hours[currentHour + i];
-                                                            return (
-                                                                <td>
-                                                                    {hour.humidity}
-                                                                </td>
-
-                                                            )
-                                                        })}
-                                                </tr>
-                                                <tr className="hour-icons-container">
-                                                    <td colSpan={numCols} className="span-data">
-                                                        Dew
-                                                    </td>
-                                                </tr>
-                                                <tr className="hour-icons-container">
-                                                    {
-                                                        Array.from({ length: 24 - currentHour }).map((_, i) => {
-                                                            const hour = day.hours[currentHour + i];
-                                                            return (
-                                                                <td>
-                                                                    {hour.dew}
-                                                                </td>
-                                                            )
-                                                        })}
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                )}
+                               
+                                <div className={` ${selectedDate !== day.datetime ? 'day-container-none' : 'day-container'}`}>
+                                    <HourlyForecast day={day} numCols={numCols} currentHour={currentHour} getIcon={getIcon} />
+                                </div>
+                           
                             </li>
                         </ul>
                     ))}
