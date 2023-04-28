@@ -1,6 +1,5 @@
-import { FormEvent, ReactFragment, useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { getWeatherByLocation } from '../../clients/apiClient';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import './Forecast.scss';
 import { HourlyForecast } from './HourlyForecast';
 
@@ -12,21 +11,11 @@ export const Forecast: React.FunctionComponent = () => {
     const [location, setLocation] = useState("");
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [selectedDate, setSelectedDate] = useState("");
-    //const [isDaySelectorClicked, setIsDaySelectorClicked] = useState(false);
     const currentDate = new Date();
     const today = currentDate.getDate();
     let currentHour = currentDate.getHours();
     let numCols = 0;
-    // const ref = useRef<HTMLDivElement>(null);
 
-    // const scroll = () => {
-    //     ref.scrollX += 20;
-    // };
-    // const scroll = (scrollOffset: any) => {
-    //     ref.current.scrollLeft += scrollOffset;
-    // };
-
-    const scrollRef = useRef<HTMLDivElement>(null);
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -38,7 +27,6 @@ export const Forecast: React.FunctionComponent = () => {
         const selectedDaySelector = event.currentTarget.parentElement as HTMLDivElement;
         selectedDaySelector.classList.toggle('selected-day-selector');
     }
-
 
     function getIcon(hourIcon: string) {
         let icon = "";
@@ -64,19 +52,6 @@ export const Forecast: React.FunctionComponent = () => {
         return (icon);
     }
 
-    function handleScrollRight() {
-        if (scrollRef.current) {
-            scrollRef.current.scrollLeft += 150;
-        }
-    }
-
-    function handleScrollLeft() {
-        if (scrollRef.current) {
-            scrollRef.current.scrollLeft -= 150;
-        }
-    }
-
-
     return (
         <main>
             <h2>Weather Forecast</h2>
@@ -97,15 +72,7 @@ export const Forecast: React.FunctionComponent = () => {
 
             {weatherData && (
                 <div className="weather-cards-container">
-                    {/* <div className="scroll-buttons-container">
-                        <button className="scroll-button" onClick={handleScrollLeft}>
-                            <FiChevronLeft />
-                        </button>
-                        <button className="scroll-button" onClick={handleScrollRight}>
-                            <FiChevronRight />
-                        </button>
-                    </div> */}
-
+                    <br />
                     {weatherData.days.slice(0, 10).map((day: any) => (
                         <ul className="weather-day" key={day.datetime}>
                             <li>
@@ -121,12 +88,10 @@ export const Forecast: React.FunctionComponent = () => {
                                         )}
                                     </a>
                                 </div>
-
-                               
                                 <div className={` ${selectedDate !== day.datetime ? 'day-container-none' : 'day-container'}`}>
                                     <HourlyForecast day={day} numCols={numCols} currentHour={currentHour} getIcon={getIcon} />
                                 </div>
-                           
+
                             </li>
                         </ul>
                     ))}

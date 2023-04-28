@@ -82,7 +82,10 @@ th {
 }
 
 .span-data {
-    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    text-align: center;
     padding: 6px;
 }
 
@@ -135,23 +138,11 @@ th {
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        padding-top: 15px;
     }
 }
 
-.scroll-buttons-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 48px;
-    width: 100%;
-}
 
-.scroll-button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
 
 @media (max-width: 1000px) {
     h2 {

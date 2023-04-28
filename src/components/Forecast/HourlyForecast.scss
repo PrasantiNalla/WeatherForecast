@@ -1,0 +1,33 @@
+.scroll-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 48px;
+    width: 100%;
+    z-index: 10;
+}
+
+.scroll-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.hour-container {
+    width: 100%;
+    overflow-x: scroll;
+    text-align: center;
+    justify-content: center;
+}
+
+.hour-table {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: none;
+}
+
+.hour-tbody {
+    width: 100%;
+    align-self: center;
+}
