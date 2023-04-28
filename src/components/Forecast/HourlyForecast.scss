@@ -19,6 +19,7 @@
     overflow-x: scroll;
     text-align: center;
     justify-content: center;
+    position: relative;
 }
 
 .hour-table {
@@ -30,4 +31,8 @@
 .hour-tbody {
     width: 100%;
     align-self: center;
+}
+
+th {
+    background-color: none;
 }

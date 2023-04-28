@@ -57,7 +57,7 @@ export const Forecast: React.FunctionComponent = () => {
             <h2>Weather Forecast</h2>
             <form onSubmit={handleSubmit}>
                 <label className="page-header">
-                    Enter your location to get the weather forecast &nbsp;
+                    Enter your location to get weather forecast &nbsp;
                 </label>
                 <input
                     className="form-input"

@@ -177,3 +177,4 @@ export const HourlyForecast: React.FunctionComponent<HourlyForecastProps> = ({
             </div>
         </div>)
 };
+

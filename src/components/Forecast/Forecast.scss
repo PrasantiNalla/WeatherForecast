@@ -16,7 +16,7 @@ h2 {
 .page-header {
     padding-top: 100px;
     font-size: 20px;
-    color: rgb(130, 177, 177);
+   // color: rgb(130, 177, 177);
 }
 
 input {
@@ -27,7 +27,7 @@ input {
 }
 
 b {
-    color: rgb(234, 164, 79);
+   // color: rgb(234, 164, 79);
     font-size: 20px;
 }
 
@@ -40,8 +40,8 @@ button {
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
+    border: white;
 }
-
 
 button:hover {
     border-color: rgb(52, 163, 227);
@@ -55,7 +55,8 @@ button:focus-visible {
 }
 
 p {
-    color: rgb(108, 175, 135);
+    // color: rgb(108, 175, 135);
+   // color: rgb(214, 212, 81);
 }
 
 table {
