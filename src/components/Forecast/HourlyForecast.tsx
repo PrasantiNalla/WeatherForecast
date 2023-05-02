@@ -36,9 +36,7 @@ export const HourlyForecast: React.FunctionComponent<HourlyForecastProps> = ({
     function handleScrollRight() {
         if (scrollRef.current) {
             scrollRef.current.scrollLeft += 150;
-            console.log("im clicked inside if " + scrollRef)
         }
-        console.dir(scrollRef);
     }
 
     function handleScrollLeft() {

@@ -2,6 +2,7 @@ import { FormEvent, useRef, useState } from 'react';
 import { getWeatherByLocation } from '../../clients/apiClient';
 import './Forecast.scss';
 import { HourlyForecast } from './HourlyForecast';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 interface WeatherData {
     days: any;
@@ -15,7 +16,19 @@ export const Forecast: React.FunctionComponent = () => {
     const today = currentDate.getDate();
     let currentHour = currentDate.getHours();
     let numCols = 0;
+    const scrollRef = useRef<HTMLDivElement>(null);
 
+    function handleScrollRight() {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft += 50;
+        }
+    }
+
+    function handleScrollLeft() {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft -= 50;
+        }
+    }
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -56,7 +69,7 @@ export const Forecast: React.FunctionComponent = () => {
         <main>
             <h2>Weather Forecast</h2>
             <form onSubmit={handleSubmit}>
-                <label className="page-header">
+                <label className="form-label">
                     Enter your location to get weather forecast &nbsp;
                 </label>
                 <input
@@ -66,12 +79,19 @@ export const Forecast: React.FunctionComponent = () => {
                     id="userLoc"
                     required
                     onChange={(e) => setLocation(e.target.value)}
-                />&nbsp;
+                />
                 <button type="submit">Search</button>
             </form>
-
+            <div className='day-scroll-button'>
+                <button className="scroll-button" onClick={handleScrollLeft}>
+                    <FiChevronLeft />
+                </button>
+                <button className="scroll-button" onClick={handleScrollRight}>
+                    <FiChevronRight />
+                </button>
+            </div>
             {weatherData && (
-                <div className="weather-cards-container">
+                <div className="weather-cards-container" ref={scrollRef}>
                     <br />
                     {weatherData.days.slice(0, 10).map((day: any) => (
                         <ul className="weather-day" key={day.datetime}>
@@ -88,7 +108,7 @@ export const Forecast: React.FunctionComponent = () => {
                                         )}
                                     </a>
                                 </div>
-                                <div className={` ${selectedDate !== day.datetime ? 'day-container-none' : 'day-container'}`}>
+                                <div className={` ${selectedDate !== day.datetime ? 'day-container-none' : 'day-container'}`} >
                                     <HourlyForecast day={day} numCols={numCols} currentHour={currentHour} getIcon={getIcon} />
                                 </div>
 

@@ -6,6 +6,12 @@ html {
     background-size: cover;
 }
 
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 h2 {
     text-align: left;
     font-size: 25px;
@@ -13,10 +19,9 @@ h2 {
     font-family: inherit;
 }
 
-.page-header {
+.form-label {
     padding-top: 100px;
     font-size: 20px;
-   // color: rgb(130, 177, 177);
 }
 
 input {
@@ -27,14 +32,14 @@ input {
 }
 
 b {
-   // color: rgb(234, 164, 79);
     font-size: 20px;
 }
 
 button {
     border-radius: 8px;
     background-color: rgb(102, 157, 189);
-    padding: 0.6em 1.2em;
+    padding: 0.6em 1.0em;
+    margin: 2px;
     font-size: 1em;
     font-weight: 300;
     font-family: inherit;
@@ -52,11 +57,6 @@ input:focus,
 input:focus-visible,
 button:focus-visible {
     outline: 2px auto rgb(52, 163, 227);
-}
-
-p {
-    // color: rgb(108, 175, 135);
-   // color: rgb(214, 212, 81);
 }
 
 table {
@@ -98,6 +98,7 @@ th {
     display: flex;
     justify-content: center;
     width: 100%;
+    overflow-x: hidden;
 }
 
 .day-info-table-header,
@@ -108,16 +109,9 @@ th {
 
 .day-container-none {
     display: none;
-
 }
 
-.day-selector {
-    align-content: center;
-    align-items: center;
-    border-radius: 10px;
-    border: 2px solid transparent;
-    z-index: 5;
-}
+
 
 .weather-day li {
     display: flex;
@@ -133,6 +127,14 @@ th {
         border-radius: 5px;
     }
 
+    .day-selector {
+        align-content: center;
+        align-items: center;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        z-index: 5;
+    }
+
     .day-container {
         position: absolute;
         top: 65%;
@@ -143,14 +145,85 @@ th {
     }
 }
 
+.day-scroll-button {
+    display: none;
+}
 
-
-@media (max-width: 1000px) {
+@media (max-width: 390px) {
     h2 {
         text-align: center;
+        color: white;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-label {
+            overflow-wrap: break-word;
+            width: 100%;
+            padding-top: 0%;
+            font-size: medium;
+        }
+
+        .form-input {
+            width: 100px;
+            height: 30px;
+            font-size: medium;
+            border-radius: 5px;
+        }
+    }
+
+    .day-scroll-button {
+        display: inline;
+    }
+
+    .scroll-buttons-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 48px;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .scroll-button {
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .weather-cards-container {
+        display: flex;
+        justify-content: flex-start;
+
+        .weather-day li {
+            overflow-x: hidden;
+            max-width: 98%;
+
+            .day-container {
+                position: absolute;
+                top: 70%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                padding-top: 15px;
+            }
+        }
     }
 
     ul {
         padding-left: 0;
     }
+
+    b {
+        font-size: medium;
+        word-wrap: break-word;
+    }
+
+
+
+
 }

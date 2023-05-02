@@ -16,7 +16,7 @@
 
 .hour-container {
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: hidden;
     text-align: center;
     justify-content: center;
     position: relative;
@@ -35,4 +35,20 @@
 
 th {
     background-color: none;
+}
+
+@media (max-width: 390px) {
+
+    .scroll-buttons-container {
+        display: inline;
+    }
+
+    .hour-table {
+        max-width: 390px;
+        justify-content: start;
+    }
+
+    .span-data {
+        text-align: left;
+    }
 }

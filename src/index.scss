@@ -61,22 +61,20 @@
 //   outline: 2px auto rgb(52, 163, 227);
 // }
 
-// @media (prefers-color-scheme: light) {
-//   body {
-//     background-color: rgb(100, 179, 218);
-//   }
+@media (prefers-color-scheme: light) {
+ 
 
-//   :root {
-//     color: #213547;
-//     background-color: #ffffff;
-//   }
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
 
-//   a:hover {
-//     color: rgb(52, 163, 227);
-//   }
+    a:hover {
+        color: rgb(52, 163, 227);
+    }
 
-//   button {
-//     margin-top: 5px;
-//     background-color: #f9f9f9;
-//   }
-// }
+    button {
+        margin-top: 5px;
+        background-color: #f9f9f9;
+    }
+}
