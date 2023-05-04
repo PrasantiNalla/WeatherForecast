@@ -20,12 +20,13 @@
     text-align: center;
     justify-content: center;
     position: relative;
+
 }
 
 .hour-table {
     max-width: 1000px;
     margin: 0 auto;
-    border: none;
+    border: none !important;
 }
 
 .hour-tbody {
