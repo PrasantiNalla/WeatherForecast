@@ -15,7 +15,7 @@
 }
 
 .hour-container {
-    width: 100%;
+    max-width: 1000px !important;
     overflow-x: hidden;
     text-align: center;
     justify-content: center;
@@ -24,7 +24,7 @@
 }
 
 .hour-table {
-    max-width: 1000px;
+
     margin: 0 auto;
     border: none !important;
 }
@@ -44,9 +44,11 @@ th {
         display: inline;
     }
 
+    .hour-container,
     .hour-table {
-        max-width: 390px;
+        max-width: 390px !important;
         justify-content: start;
+        overflow-x: hidden;
     }
 
     .span-data {
